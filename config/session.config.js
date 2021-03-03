@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 module.exports = app =>{
   app.use(session({
-    secret: process.env.SESS_SECRET,
+    secret: 'SECRET',
     resave:true,
     saveUninitialized:false,
     cookie:{

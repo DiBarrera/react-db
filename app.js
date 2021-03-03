@@ -8,6 +8,7 @@ const favicon      = require('serve-favicon');
 const hbs          = require('hbs');
 const logger       = require('morgan');
 const path         = require('path');
+const cors         = require('cors');
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -23,6 +24,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Express View engine setup
+
+app.use(
+  cors({
+    credentials: true,
+    origin: ['http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
+  })
+);
 
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),

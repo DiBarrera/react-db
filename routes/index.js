@@ -14,7 +14,7 @@ router.get('/', async(req, res, next) => {
 
 router.get('/:idBook', async(req, res, next) => {
     const {idBook} = req.params
-    const book = await Books.findById(idBook)
+    const book = await Books.findById(idBook).populate('author')
     res.status(200).json(book)
 })
 
